@@ -56,13 +56,14 @@ class Conectar():
             except mysql.connector.Error as descripcionError:
                 print("¡No se conectó!", descripcionError)
 
-    def InsertarInterprete(self, nombre, apellido, nacionalidad, foto):
+   def InsertarInterprete(self, interprete):
         if self.conexion.is_connected():
             try:
                 cursor = self.conexion.cursor()
                 sentenciaSQL = "INSERT into interprete values(null,%s,%s,%s,%s)"
 
-                data = (nombre, apellido, nacionalidad, foto)
+                data = (interprete.getNombre(), interprete.getApellido(),
+                        interprete.getNacionalidad(), interprete.getFoto())
 
                 cursor.execute(sentenciaSQL, data)
 
