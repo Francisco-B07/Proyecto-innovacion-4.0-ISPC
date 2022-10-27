@@ -129,6 +129,22 @@ class Conectar():
             except mysql.connector.Error as descripcionError:
                 print("¡No se conectó!", descripcionError)
 
+    def EliminarAlbum(self, cod_album):
+        if self.conexion.is_connected():
+            try:
+                cursor = self.conexion.cursor()
+                sentenciaSQL = "DELETE from album WHERE cod_album = %s"
+                data = (cod_album,)
+                cursor.execute(sentenciaSQL, data)
+                self.conexion.commit()
+                self.conexion.close()
+                print("\n¡Album eliminado correctamente!\n")
+
+            except mysql.connector.Error as descripcionError:
+                print("¡No se conectó!", descripcionError)
+            
+                
+                
     def ListarGenero(self):
         if self.conexion.is_connected():
             try:
@@ -433,8 +449,7 @@ class Album():
     # ---------------------------------------------------------------------------------------------------------
 
 
-AComoAmor = Album(0, 456783, 'A Como Amor', 3, 5, 10,
-                  5, 3, '1978-01-01', 899.99, 3, '')
+
 
 con = Conectar()
 # con.InsertarAlbum(AComoAmor)
