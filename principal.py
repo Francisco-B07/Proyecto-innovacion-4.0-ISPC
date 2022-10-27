@@ -6,10 +6,12 @@ while True:
     print("+-------------------------------------------+\n")
     print("")
     print("MENÚ PRINCIPAL\n")
-    print("1 - ALTA / BAJA / MODIFICACION DE UN ÁLBUM")
+    # print("1 - ALTA / BAJA / MODIFICACION DE UN ÁLBUM")
+    print("1 - ALTA DE UN ÁLBUM")
     print("2 - LISTADO DE ÁLBUMES POR ARTISTAS")
     print("3 - LISTADO DE ÁLBUMES POR GÉNERO MUSICAL")
-    print("4 - BÚSQUEDA POR NOMBRE DE ÁLBUM")
+    # print("4 - BÚSQUEDA POR NOMBRE DE ÁLBUM")
+    print("4 - ELIMINAR ÁLBUM")
     print("5 - INSERTAR INTERPRETE")
     print("6 - SALIR")
     print("\n")
@@ -22,7 +24,7 @@ while True:
     elif opcion == 3:
         controlador.ListarAlbumesPorGenero()
     elif opcion == 4:
-        None
+        controlador.EliminarAlbum()
     elif opcion == 5:
         None
     elif opcion == 6:
