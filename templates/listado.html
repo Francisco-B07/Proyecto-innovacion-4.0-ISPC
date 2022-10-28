@@ -1,2 +1,40 @@
 {% extends './layout.html' %} {% block title %}Listado{% endblock %} {% block
-body %} HOLA {% endblock %}
+body %}
+<h1>Listado de Álbums</h1>
+<table class="table table-striped">
+  <tbody>
+    <tr>
+      <th>Código</th>
+      <th>Nombre</th>
+      <th>Intérprete</th>
+      <th>Género</th>
+      <th>Discográfica</th>
+      <th>Precio</th>
+      <th>Cantidad</th>
+      <th>Formato</th>
+      <th>Opciones</th>
+    </tr>
+
+    {% for album in listado %}
+    <tr>
+      <td>{{album[0]}}</td>
+      <td>{{album[1]}}</td>
+      <td>{{album[2]+''+album[3]}}</td>
+      <td>{{album[4]}}</td>
+      <td>{{album[5]}}</td>
+      <td>{{album[6]}}</td>
+      <td>{{album[7]}}</td>
+      <td>{{album[8]}}</td>
+      <td>
+        <a href="editar/{{album[0]}}">Editar</a> |
+        <a href="eliminar/{{album[0]}}">Eliminar</a>
+      </td>
+    </tr>
+    {% endfor %}
+    <tr>
+      <td><a href="/">Volver al Menú principal</a></td>
+    </tr>
+  </tbody>
+</table>
+{% endblock %}
+
