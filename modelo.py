@@ -56,7 +56,7 @@ class Conectar():
             except mysql.connector.Error as descripcionError:
                 print("¡No se conectó!", descripcionError)
 
-   def InsertarInterprete(self, interprete):
+    def InsertarInterprete(self, interprete):
         if self.conexion.is_connected():
             try:
                 cursor = self.conexion.cursor()
@@ -143,9 +143,7 @@ class Conectar():
 
             except mysql.connector.Error as descripcionError:
                 print("¡No se conectó!", descripcionError)
-            
-                
-                
+
     def ListarGenero(self):
         if self.conexion.is_connected():
             try:
@@ -448,8 +446,6 @@ class Album():
         return str(self.id_album) + ' ' + str(self.cod_album) + ' ' + self.nombre + ' ' + str(self.id_interprete) + ' ' + str(self.id_genero) + ' ' + str(self.cant_temas) + ' ' + str(self.id_discografica) + ' ' + str(self.id_formato) + ' ' + self.fec_lanzamiento + ' ' + str(self.precio) + ' ' + str(self.cantidad) + ' ' + self.caratula
 
     # ---------------------------------------------------------------------------------------------------------
-
-
 
 
 con = Conectar()
