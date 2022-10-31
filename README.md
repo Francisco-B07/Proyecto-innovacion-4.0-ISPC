@@ -6,6 +6,7 @@
 * Albiñana Gonzalo
 * Burgoa Francisco
 
-####Link del proyecto:
+###Link del proyecto:
+
 https://la-disqueria.herokuapp.com/
 
