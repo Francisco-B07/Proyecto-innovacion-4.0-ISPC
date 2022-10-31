@@ -6,11 +6,11 @@ class Conectar():
     def __init__(self) -> None:
         try:
             self.conexion = mysql.connector.connect(
-                host='localhost',
+                host='sql10.freesqldatabase.com',
                 port=3306,
-                user='root',
-                password='',
-                db='disqueria'
+                user='sql10531108',
+                password='Xy9jj4APsh',
+                db='sql10531108'
 
             )
             print("Conectado!")
