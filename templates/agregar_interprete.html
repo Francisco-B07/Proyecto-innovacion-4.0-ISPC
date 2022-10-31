@@ -1,0 +1,40 @@
+{% extends './layout.html' %} {% block title %}Agregar interprete{% endblock %}
+{% block body %}
+<h1 class="titulo">Agregar intérprete</h1>
+<div class="d-flex justify-content-center container">
+  <form
+    class="contenedor-formulario d-flex flex-column justify-content-center align-content-center"
+    action="/add_interprete"
+    method="POST"
+  >
+    <div class="form-group">
+      <input
+        type="text"
+        name="nombre"
+        placeholder="Nombre"
+        class="form-control"
+      />
+    </div>
+    <div class="form-group">
+      <input
+        type="text"
+        name="apellido"
+        placeholder="Apellido"
+        class="form-control"
+      />
+    </div>
+    <div class="form-group">
+      <input
+        type="text"
+        name="nacionalidad"
+        placeholder="Nacionalidad"
+        class="form-control"
+      />
+    </div>
+    <div class="form-group">
+      <input type="text" name="foto" placeholder="Foto" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-success">Agregar</button>
+  </form>
+</div>
+{% endblock %}

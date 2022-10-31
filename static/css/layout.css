@@ -1,3 +1,74 @@
 body {
-  background-color: aqua;
+  background: #0575e6;
+  background: -webkit-linear-gradient(to right, #021b79, #0575e6);
+  background: linear-gradient(to right, #021b79, #0575e6);
+}
+.logo {
+  width: 80px;
+  height: 65px;
+}
+.titulo {
+  color: white;
+  text-align: center;
+  margin-top: 50px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 50px;
+  margin-bottom: 30px;
+}
+.nombre {
+  font-weight: 400;
+  font-style: italic;
+}
+.listado {
+  margin-top: 60px;
+  margin-left: -140px;
+}
+.items {
+  text-decoration: none;
+  text-align: start;
+  margin-bottom: 7px;
+  font-size: 26px;
+}
+.items:hover {
+  font-size: 27px;
+}
+
+.agregar {
+  margin-top: 5px;
+  width: 40px;
+  height: 25px;
+  padding: 0px;
+}
+
+.boton-opciones {
+  width: 80px;
+  margin-bottom: 4px;
+}
+td {
+  text-align: center;
+  color: white;
+}
+th {
+  text-align: center;
+  color: white;
+}
+.container {
+  margin-top: 50px;
+}
+.form-control,
+.form-select {
+  width: 400px;
+  margin-bottom: 15px;
+}
+
+.boton-enviar {
+  height: 40px;
+  margin-top: 20px;
+  margin-bottom: 50px;
+}
+.boton-buscar {
+  margin-left: 10px;
+  width: 90px;
+  /* margin-top: 50px; */
 }

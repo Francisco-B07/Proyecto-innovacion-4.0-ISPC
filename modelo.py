@@ -21,7 +21,7 @@ class Conectar():
         if self.conexion.is_connected():
             try:
                 cursor = self.conexion.cursor()
-                senteciaSQL = "SELECT cod_album, album.nombre, interprete.nombre, interprete.apellido, genero.nombre, discografica.nombre, precio, cantidad, formato.tipo FROM album, interprete, discografica,formato,genero WHERE album.id_interprete = interprete.id_interprete AND album.id_discografica = discografica.id_discografica AND album.id_formato = formato.id_formato AND album.id_genero = genero.id_genero ORDER By interprete.apellido desc"
+                senteciaSQL = "SELECT cod_album, album.nombre, interprete.nombre, interprete.apellido, genero.nombre, cant_temas, discografica.nombre, formato.tipo, fec_lanzamiento, precio, cantidad, caratula FROM album, interprete, discografica,formato,genero WHERE album.id_interprete = interprete.id_interprete AND album.id_discografica = discografica.id_discografica AND album.id_formato = formato.id_formato AND album.id_genero = genero.id_genero ORDER By interprete.apellido desc"
                 cursor.execute(senteciaSQL)
                 resultados = cursor.fetchall()
                 self.conexion.close()
@@ -34,12 +34,24 @@ class Conectar():
         if self.conexion.is_connected():
             try:
                 cursor = self.conexion.cursor()
-                senteciaSQL = "SELECT cod_album, album.nombre, interprete.nombre, interprete.apellido, genero.nombre, discografica.nombre, precio, cantidad, formato.tipo FROM album, interprete, discografica,formato,genero WHERE album.id_interprete = interprete.id_interprete AND album.id_discografica = discografica.id_discografica AND album.id_formato = formato.id_formato AND album.id_genero = genero.id_genero ORDER By genero.nombre asc"
+                senteciaSQL = "SELECT cod_album, album.nombre, interprete.nombre, interprete.apellido, genero.nombre, cant_temas, discografica.nombre, formato.tipo, fec_lanzamiento, precio, cantidad, caratula FROM album, interprete, discografica,formato,genero WHERE album.id_interprete = interprete.id_interprete AND album.id_discografica = discografica.id_discografica AND album.id_formato = formato.id_formato AND album.id_genero = genero.id_genero ORDER By genero.nombre asc"
                 cursor.execute(senteciaSQL)
                 resultados = cursor.fetchall()
                 # self.conexion.close()
                 return resultados
 
+            except mysql.connector.Error as descripcionError:
+                print("¡No se conectó!", descripcionError)
+
+    def BuscarAlbum(self, nombre):
+        if self.conexion.is_connected():
+            try:
+                cursor = self.conexion.cursor()
+                sentenciaSQL = "SELECT cod_album, album.nombre, interprete.nombre, interprete.apellido, genero.nombre, cant_temas, discografica.nombre, formato.tipo, fec_lanzamiento, precio, cantidad, caratula FROM album, interprete, discografica,formato,genero WHERE album.id_interprete = interprete.id_interprete AND album.id_discografica = discografica.id_discografica AND album.id_formato = formato.id_formato AND album.id_genero = genero.id_genero AND album.nombre LIKE %s"
+                data = (nombre,)
+                cursor.execute(sentenciaSQL, data)
+                albums = cursor.fetchall()
+                return albums
             except mysql.connector.Error as descripcionError:
                 print("¡No se conectó!", descripcionError)
 
@@ -87,6 +99,40 @@ class Conectar():
                 self.conexion.commit()
                 self.conexion.close()
                 print("Género insertado correctamente")
+
+            except mysql.connector.Error as descripcionError:
+                print("¡No se conectó!", descripcionError)
+
+    def InsertarDiscografica(self, nombre):
+        if self.conexion.is_connected():
+            try:
+                cursor = self.conexion.cursor()
+                sentenciaSQL = "INSERT into discografica values(null,%s)"
+
+                data = (nombre,)
+
+                cursor.execute(sentenciaSQL, data)
+
+                self.conexion.commit()
+                self.conexion.close()
+                print("Discografica insertada correctamente")
+
+            except mysql.connector.Error as descripcionError:
+                print("¡No se conectó!", descripcionError)
+
+    def InsertarFormato(self, nombre):
+        if self.conexion.is_connected():
+            try:
+                cursor = self.conexion.cursor()
+                sentenciaSQL = "INSERT into formato values(null,%s)"
+
+                data = (nombre,)
+
+                cursor.execute(sentenciaSQL, data)
+
+                self.conexion.commit()
+                self.conexion.close()
+                print("Formato insertado correctamente")
 
             except mysql.connector.Error as descripcionError:
                 print("¡No se conectó!", descripcionError)
@@ -177,6 +223,90 @@ class Conectar():
                 resultados = cursor.fetchall()
                 # self.conexion.close()
                 return resultados
+            except mysql.connector.Error as descripcionError:
+                print("¡No se conectó!", descripcionError)
+
+    def ObtenerAlbum(self, cod_album):
+        if self.conexion.is_connected():
+            try:
+                cursor = self.conexion.cursor()
+                sentenciaSQL = "SELECT * FROM album WHERE cod_album = %s"
+                data = (cod_album,)
+                cursor.execute(sentenciaSQL, data)
+                album = cursor.fetchall()
+                return album
+
+            except mysql.connector.Error as descripcionError:
+                print("¡No se conectó!", descripcionError)
+
+    def ObtenerInterprete(self, id_interprete):
+        if self.conexion.is_connected():
+            try:
+                cursor = self.conexion.cursor()
+                sentenciaSQL = "SELECT * FROM interprete WHERE id_interprete = %s"
+                data = (id_interprete,)
+                cursor.execute(sentenciaSQL, data)
+                interprete = cursor.fetchall()
+                return interprete
+
+            except mysql.connector.Error as descripcionError:
+                print("¡No se conectó!", descripcionError)
+
+    def ObtenerGenero(self, id_genero):
+        if self.conexion.is_connected():
+            try:
+                cursor = self.conexion.cursor()
+                sentenciaSQL = "SELECT * FROM genero WHERE id_genero = %s"
+                data = (id_genero,)
+                cursor.execute(sentenciaSQL, data)
+                genero = cursor.fetchall()
+                return genero
+            except mysql.connector.Error as descripcionError:
+                print("¡No se conectó!", descripcionError)
+
+    def ObtenerDiscografica(self, id_discografica):
+        if self.conexion.is_connected():
+            try:
+                cursor = self.conexion.cursor()
+                sentenciaSQL = "SELECT * FROM discografica WHERE id_discografica = %s"
+                data = (id_discografica,)
+                cursor.execute(sentenciaSQL, data)
+                discografica = cursor.fetchall()
+                return discografica
+            except mysql.connector.Error as descripcionError:
+                print("¡No se conectó!", descripcionError)
+
+    def ObtenerFormato(self, id_formato):
+        if self.conexion.is_connected():
+            try:
+                cursor = self.conexion.cursor()
+                sentenciaSQL = "SELECT * FROM formato WHERE id_formato = %s"
+                data = (id_formato,)
+                cursor.execute(sentenciaSQL, data)
+                formato = cursor.fetchall()
+                return formato
+            except mysql.connector.Error as descripcionError:
+                print("¡No se conectó!", descripcionError)
+
+    def EditarAlbum(self, id_album, albumEditado):
+        if self.conexion.is_connected():
+            try:
+                cursor = self.conexion.cursor()
+                sentenciaSQL = "UPDATE album SET cod_album = %s, nombre = %s, id_interprete = %s, id_genero = %s, cant_temas = %s, id_discografica = %s, id_formato = %s, fec_lanzamiento = %s, precio = %s, cantidad = %s, caratula = %s WHERE id_album =%s"
+                data = (albumEditado.getCod_album(),
+                        albumEditado.getNombre(),
+                        albumEditado.getId_interprete(),
+                        albumEditado.getId_genero(),
+                        albumEditado.getCant_temas(),
+                        albumEditado.getId_discografica(),
+                        albumEditado.getId_formato(),
+                        albumEditado.getFec_lanzamiento(),
+                        albumEditado.getPrecio(),
+                        albumEditado.getCantidad(),
+                        albumEditado.getCaratula(), id_album)
+                cursor.execute(sentenciaSQL, data)
+                self.conexion.commit()
+                self.conexion.close()
             except mysql.connector.Error as descripcionError:
                 print("¡No se conectó!", descripcionError)
 

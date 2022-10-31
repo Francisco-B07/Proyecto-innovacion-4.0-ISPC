@@ -1,2 +1,120 @@
 {% extends './layout.html' %} {% block title %}Cargar{% endblock %} {% block
-body %} HOLA {% endblock %}
+body %}
+<h1 class="titulo">Agregar Álbum</h1>
+<div class="d-flex justify-content-center container">
+  <form
+    class="contenedor-formulario d-flex flex-column"
+    action="/agregar_album"
+    method="POST"
+  >
+    <div class="form-group">
+      <input
+        type="text"
+        name="codigoAlbum"
+        placeholder="Codigo del Álbum"
+        class="form-control"
+      />
+    </div>
+    <div class="form-group">
+      <input
+        type="text"
+        name="nombre"
+        placeholder="Nombre del Álbum"
+        class="form-control"
+      />
+    </div>
+    <div class="form-group">
+      <select
+        class="form-select"
+        aria-label="Default select example"
+        name="interprete"
+      >
+        <option selected>Seleccione el interprete</option>
+        {% for interprete in data[0] %}
+        <option value="{{interprete[0]}}">
+          {{interprete[1]+' '+interprete[2]}}
+        </option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="form-group">
+      <select
+        class="form-select"
+        aria-label="Default select example"
+        name="genero"
+      >
+        <option selected>Seleccione el genero</option>
+        {% for genero in data[1] %}
+        <option value="{{genero[0]}}">{{genero[1]}}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="form-group">
+      <input
+        type="number"
+        name="cantidadTemas"
+        placeholder="Cantidad de temas"
+        class="form-control"
+      />
+    </div>
+    <div class="form-group">
+      <select
+        class="form-select"
+        aria-label="Default select example"
+        name="discografica"
+      >
+        <option selected>Seleccione la discografica</option>
+        {% for discografica in data[2] %}
+        <option value="{{discografica[0]}}">{{discografica[1]}}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="form-group">
+      <select
+        class="form-select"
+        aria-label="Default select example"
+        name="formato"
+      >
+        <option selected>Seleccione el formato</option>
+        {% for formato in data[3] %}
+        <option value="{{formato[0]}}">{{formato[1]}}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="form-group">
+      <input
+        type="date"
+        name="fechaLanzamiento"
+        placeholder="Fecha de lanzamiento"
+        class="form-control"
+      />
+    </div>
+    <div class="form-group">
+      <input
+        type="number"
+        name="precio"
+        placeholder="Precio"
+        class="form-control"
+      />
+    </div>
+    <div class="form-group">
+      <input
+        type="number"
+        name="cantidad"
+        placeholder="Cantidad"
+        class="form-control"
+      />
+    </div>
+    <div class="form-group">
+      <input
+        type="text"
+        name="caratula"
+        placeholder="Caratula"
+        class="form-control"
+      />
+    </div>
+    <button type="submit" class="btn btn-success boton-enviar">Agregar</button>
+  </form>
+</div>
+
+{% endblock %}

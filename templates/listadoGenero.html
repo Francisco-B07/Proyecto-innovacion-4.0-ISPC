@@ -1,2 +1,37 @@
 {% extends './layout.html' %} {% block title %}Listado por Genero{% endblock %}
-{% block body %} HOLA {% endblock %}
+{% block body %}
+<h1 class="titulo">Mis Álbums por género</h1>
+<table class="table table-bordered tabla">
+  <tbody>
+    <tr>
+      <th>Código</th>
+      <th>Nombre</th>
+      <th>Intérprete</th>
+      <th>Género</th>
+      <th>Cantidad de temas</th>
+      <th>Discográfica</th>
+      <th>Formato</th>
+      <th>Fecha de lanzamiento</th>
+      <th>Precio</th>
+      <th>Cantidad</th>
+      <th>Caratula</th>
+    </tr>
+
+    {% for album in listado %}
+    <tr>
+      <td>{{album[0]}}</td>
+      <td>{{album[1]}}</td>
+      <td>{{album[2]+' '+album[3]}}</td>
+      <td>{{album[4]}}</td>
+      <td>{{album[5]}}</td>
+      <td>{{album[6]}}</td>
+      <td>{{album[7]}}</td>
+      <td>{{album[8]}}</td>
+      <td>{{album[9]}}</td>
+      <td>{{album[10]}}</td>
+      <td>{{album[11]}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

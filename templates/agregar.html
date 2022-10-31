@@ -1,0 +1,51 @@
+{% extends './layout.html' %} {% block title %}Agregar{% endblock %} {% block
+body %}
+<h1 class="titulo">Agregar género</h1>
+<div class="d-flex justify-content-center container">
+  <form class="d-flex" action="/add_genero" method="POST">
+    <div class="form-group">
+      <input
+        type="text"
+        name="genero"
+        placeholder="Ingrese nuevo género"
+        class="form-control"
+      />
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-light boton-buscar">Agregar</button>
+    </div>
+  </form>
+</div>
+<h1 class="titulo">Agregar Discográfica</h1>
+<div class="d-flex justify-content-center container">
+  <form class="d-flex" action="/add_discografica" method="POST">
+    <div class="form-group">
+      <input
+        type="text"
+        name="discografica"
+        placeholder="Ingrese discográfica"
+        class="form-control"
+      />
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-light boton-buscar">Agregar</button>
+    </div>
+  </form>
+</div>
+<h1 class="titulo">Agregar Formato</h1>
+<div class="d-flex justify-content-center container">
+  <form class="d-flex" action="/add_formato" method="POST">
+    <div class="form-group">
+      <input
+        type="text"
+        name="formato"
+        placeholder="Ingrese formato"
+        class="form-control"
+      />
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-light boton-buscar">Agregar</button>
+    </div>
+  </form>
+</div>
+{% endblock %}

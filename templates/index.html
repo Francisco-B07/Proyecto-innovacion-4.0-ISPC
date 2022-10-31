@@ -1,11 +1,67 @@
 {% extends './layout.html' %} {% block title %}Menu{% endblock %} {% block body
 %}
-<h1>Menu principal</h1>
-<ul>
-  <li><a href="listado">Listar álbums por intérprete</a></li>
-  <li><a href="listadoGenero">Listar álbums por género</a></li>
-  <li><a href="cargar">Agregar Nuevo álbum</a></li>
-  <li><a href="listado">Editar álbum</a></li>
-  <li><a href="listado">Eliminar álbum</a></li>
-</ul>
+<h1 class="titulo">Mis Álbums por intérprete</h1>
+<form
+  class="contenedor-formulario d-flex justify-content-center align-content-center"
+  action="/buscar_album"
+  method="POST"
+>
+  <div class="form-group">
+    <input
+      type="text"
+      name="album"
+      placeholder="Buscar Álbum"
+      class="form-control"
+    />
+  </div>
+  <div class="form-group">
+    <button type="submit" class="btn btn-light boton-buscar">Buscar</button>
+  </div>
+</form>
+<table class="table table-bordered tabla">
+  <tbody>
+    <tr>
+      <th>Código</th>
+      <th>Nombre</th>
+      <th class="d-flex flex-column align-items-center">
+        Intérprete
+        <a href="agregar_interprete" class="btn btn-success agregar"> + </a>
+      </th class="d-flex flex-column align-items-center">
+      <th>Género <a href="agregar" class="btn btn-success agregar"> + </a></th>
+      <th>Cantidad de temas</th>
+      <th >Discográfica <a href="agregar" class="btn btn-success agregar"> + </a></th>
+      <th>Formato <a href="agregar" class="btn btn-success agregar"> + </a></th>
+      <th>Fecha de lanzamiento</th>
+      <th>Precio</th>
+      <th>Cantidad</th>
+      <th>Caratula</th>
+      <th>Opciones</th>
+    </tr>
+
+    {% for album in listado %}
+    <tr>
+      <td>{{album[0]}}</td>
+      <td>{{album[1]}}</td>
+      <td>{{album[2]+' '+album[3]}}</td>
+      <td>{{album[4]}}</td>
+      <td>{{album[5]}}</td>
+      <td>{{album[6]}}</td>
+      <td>{{album[7]}}</td>
+      <td>{{album[8]}}</td>
+      <td>{{album[9]}}</td>
+      <td>{{album[10]}}</td>
+      <td>{{album[11]}}</td>
+      <td>
+        <a href="editar/{{album[0]}}" class="btn btn-success boton-opciones ">Editar</a>
+        <a
+          href="eliminar/{{album[0]}}"
+          class="btn btn-danger boton-opciones"
+          >Eliminar</a
+        >
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<!-- <a class="volver" href="/">Volver al Menú principal</a> -->
 {% endblock %}
